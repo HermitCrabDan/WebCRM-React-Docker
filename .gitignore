@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ReactAspNetCoreWebCRM/webapi/obj
+/ReactAspNetCoreWebCRM/WebCRM.Common/obj
+/ReactAspNetCoreWebCRM/reactapp/node_modules
+/ReactAspNetCoreWebCRM/WebCRM.Data/obj
+/ReactAspNetCoreWebCRM/WebCRM.Services/obj
+/ReactAspNetCoreWebCRM/obj/Docker
+/ReactAspNetCoreWebCRM/.vs
