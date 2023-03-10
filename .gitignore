@@ -9,3 +9,13 @@
 /ReactAspNetCoreWebCRM/WebCRM.Services/obj
 /ReactAspNetCoreWebCRM/obj/Docker
 /ReactAspNetCoreWebCRM/.vs
+/CRMNUnitTests/obj
+/CRMTests/bin/Debug/net7.0
+/CRMTests/obj
+/ReactAspNetCoreWebCRM/bin/Debug
+/ReactAspNetCoreWebCRM/obj/Debug
+/ReactAspNetCoreWebCRM/reactapp/obj/Debug
+/ReactAspNetCoreWebCRM/webapi/bin/Debug/net7.0
+/ReactAspNetCoreWebCRM/WebCRM.Common/bin/Debug/net7.0
+/ReactAspNetCoreWebCRM/WebCRM.Data/bin/Debug/net7.0
+/ReactAspNetCoreWebCRM/WebCRM.Services/bin/Debug/net7.0
