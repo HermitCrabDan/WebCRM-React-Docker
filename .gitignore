@@ -19,3 +19,6 @@
 /ReactAspNetCoreWebCRM/WebCRM.Common/bin/Debug/net7.0
 /ReactAspNetCoreWebCRM/WebCRM.Data/bin/Debug/net7.0
 /ReactAspNetCoreWebCRM/WebCRM.Services/bin/Debug/net7.0
+/ReactAspNetCoreWebCRM/WebCRM.WebApi/bin/Debug/net7.0
+/ReactAspNetCoreWebCRM/WebCRM.WebApi/obj
+/.vs
