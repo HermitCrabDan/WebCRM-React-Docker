@@ -8,11 +8,11 @@ using WebCRM.Services.Models;
 
 namespace WebCRM.Services.ViewModels
 {
-    public class EntityApplicationRoleViewModel : BaseViewModel<EntityApplicationRole>, IEntityApplicationRole
+    public class EntityApplicationRoleDto : BaseDto<EntityApplicationRole>, IEntityApplicationRole
     {
-        public EntityApplicationRoleViewModel() { }
+        public EntityApplicationRoleDto() { }
 
-        public EntityApplicationRoleViewModel(EntityApplicationRole model)
+        public EntityApplicationRoleDto(EntityApplicationRole model)
         {
             this.SetModel(model);
         }
@@ -24,7 +24,7 @@ namespace WebCRM.Services.ViewModels
         public bool CanView { get; set; }
         public string EntityName { get; set; } = string.Empty;
 
-        public virtual ApplicationRoleViewModel ApplicationRole { get; set; } = new ApplicationRoleViewModel();
+        public virtual ApplicationRoleDto ApplicationRole { get; set; } = new ApplicationRoleDto();
 
         public override void SetModel(EntityApplicationRole model)
         {
@@ -41,7 +41,7 @@ namespace WebCRM.Services.ViewModels
 
                 if (model.ApplicationRole != null) 
                 {
-                    this.ApplicationRole = new ApplicationRoleViewModel(model.ApplicationRole);
+                    this.ApplicationRole = new ApplicationRoleDto(model.ApplicationRole);
                 }
             }
         }

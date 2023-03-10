@@ -49,11 +49,6 @@ namespace WebCRM.Data
         public DbSet<RoleMember> RoleMembers { get; set; }
 
         /// <summary>
-        /// The sub roles table
-        /// </summary>
-        public DbSet<SubRole> SubRoles { get; set; }
-
-        /// <summary>
         /// The users table
         /// </summary>
         public DbSet<User> Users { get; set; }
@@ -70,18 +65,6 @@ namespace WebCRM.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SubRole>()
-                .HasOne(s => s.Role)
-                .WithMany(r => r.SubRoles)
-                .HasForeignKey(s => s.RoleId)
-                .HasPrincipalKey(r => r.Id);
-
-            modelBuilder.Entity<SubRole>()
-                .HasOne(s => s.ParentRole)
-                .WithMany(r => r.ParentRoles)
-                .HasForeignKey(s => s.ParentRoleId)
-                .HasPrincipalKey(r => r.Id);
-
             modelBuilder.Entity<RoleMember>()
                 .HasOne(m => m.User)
                 .WithMany(u => u.UserRoles)

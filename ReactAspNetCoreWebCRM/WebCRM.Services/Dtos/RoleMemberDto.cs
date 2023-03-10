@@ -7,13 +7,13 @@ using WebCRM.Data;
 
 namespace WebCRM.Services.Models
 {
-    public class RoleMemberViewModel : BaseViewModel<RoleMember>, IRoleMember
+    public class RoleMemberDto : BaseDto<RoleMember>, IRoleMember
     {
-        public RoleMemberViewModel() 
+        public RoleMemberDto() 
         {
         }
 
-        public RoleMemberViewModel(RoleMember model)
+        public RoleMemberDto(RoleMember model)
         {
             this.SetModel(model);
         }
@@ -28,12 +28,12 @@ namespace WebCRM.Services.Models
 
                 if (model.Role != null)
                 {
-                    this.ApplicationRole = new ApplicationRoleViewModel(model.Role);
+                    this.ApplicationRole = new ApplicationRoleDto(model.Role);
                 }
 
                 if (model.User != null)
                 {
-                    this.User = new UserViewModel(model.User);
+                    this.User = new UserDto(model.User);
                 }
             }
         }
@@ -41,9 +41,9 @@ namespace WebCRM.Services.Models
         public int RoleId { get; set; }
         public int UserId { get; set; }
 
-        public ApplicationRoleViewModel ApplicationRole { get; set; } = new ApplicationRoleViewModel();
+        public ApplicationRoleDto ApplicationRole { get; set; } = new ApplicationRoleDto();
 
-        public UserViewModel User { get; set; } = new UserViewModel();
+        public UserDto User { get; set; } = new UserDto();
 
         public override RoleMember ToBaseModel()
         {

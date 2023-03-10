@@ -9,7 +9,7 @@ using WebCRM.Services.Models;
 
 namespace WebCRM.Services.EntityServices
 {
-    public class ContractPaymentDataService : BaseDataService<ContractPaymentViewModel, ContractPayment>
+    public class ContractPaymentDataService : BaseDataService<ContractPaymentDto, ContractPayment>
     {
         public ContractPaymentDataService(IRepository<ContractPayment> repository)
             : base(repository,

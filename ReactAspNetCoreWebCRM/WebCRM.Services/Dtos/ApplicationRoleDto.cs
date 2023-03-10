@@ -7,13 +7,20 @@ using WebCRM.Data;
 
 namespace WebCRM.Services.Models
 {
-    public class ApplicationRoleViewModel : SoftDeletedViewModel<ApplicationRole>, IApplicationRole
+    public class ApplicationRoleDto : SoftDeletedDto<ApplicationRole>, IApplicationRole
     {
-        public ApplicationRoleViewModel() 
+        /// <summary>
+        /// Base Constructor
+        /// </summary>
+        public ApplicationRoleDto() 
         {
         }
 
-        public ApplicationRoleViewModel(ApplicationRole applicationRole) 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="applicationRole">The application role data model</param>
+        public ApplicationRoleDto(ApplicationRole applicationRole) 
         {
             this.SetModel(applicationRole);
         }
@@ -25,23 +32,22 @@ namespace WebCRM.Services.Models
                 base.SetModel(model);
                 this.RoleName = model.RoleName;
 
-                if (model.SubRoles != null && model.SubRoles.Any())
-                {
-                    this.SubRoles = model.SubRoles.Select(x => new SubRoleViewModel(x)).ToList();
-                }
-
                 if (model.RoleMembers != null && model.RoleMembers.Any())
                 {
-                    this.RoleMembers = model.RoleMembers.Select(x => new RoleMemberViewModel(x)).ToList();
+                    this.RoleMembers = model.RoleMembers.Select(x => new RoleMemberDto(x)).ToList();
                 }
             }
         }
 
+        /// <summary>
+        /// The name of the role
+        /// </summary>
         public string RoleName { get; set; } = string.Empty;
 
-        public List<SubRoleViewModel> SubRoles { get; set; } = new List<SubRoleViewModel>();
-
-        public List<RoleMemberViewModel> RoleMembers { get; set; } = new List<RoleMemberViewModel>();
+        /// <summary>
+        /// The members of the application role
+        /// </summary>
+        public List<RoleMemberDto> RoleMembers { get; set; } = new List<RoleMemberDto>();
 
         public override ApplicationRole ToBaseModel()
         {
