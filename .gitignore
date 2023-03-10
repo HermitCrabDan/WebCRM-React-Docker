@@ -22,3 +22,6 @@
 /ReactAspNetCoreWebCRM/WebCRM.WebApi/bin/Debug/net7.0
 /ReactAspNetCoreWebCRM/WebCRM.WebApi/obj
 /.vs
+/ReactAspNetCoreWebCRM/WebCRM.ReactApp/node_modules
+/ReactAspNetCoreWebCRM/WebCRM.ReactApp/.vscode
+/ReactAspNetCoreWebCRM/WebCRM.ReactApp/obj/Debug
