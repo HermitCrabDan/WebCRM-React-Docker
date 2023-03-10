@@ -7,11 +7,15 @@ using WebCRM.Data;
 
 namespace WebCRM.Services
 {
-    public abstract class SoftDeletedViewModel<T> : BaseViewModel<T>, ISoftDeleted where T : class, IDataModel<T>, ISoftDeleted, new()
+    public abstract class SoftDeletedViewModel<DataModel> : BaseViewModel<DataModel>, ISoftDeleted where DataModel : class, IDataModel<DataModel>, ISoftDeleted, new()
     {
         public SoftDeletedViewModel() { }
 
-        public override void SetModel(T model)
+        /// <summary>
+        /// Sets the model values
+        /// </summary>
+        /// <param name="model">The data model</param>
+        public override void SetModel(DataModel model)
         {
             if (model != null)
             {
@@ -20,9 +24,16 @@ namespace WebCRM.Services
             }
         }
 
+        /// <summary>
+        /// The date the entity was softt deleted
+        /// </summary>
         public DateTime? DeletedDate { get; set; }
 
-        public override T ToBaseModel()
+        /// <summary>
+        /// Returns the base data model
+        /// </summary>
+        /// <returns>The data model</returns>
+        public override DataModel ToBaseModel()
         {
             var model = base.ToBaseModel();
             model.DeletedDate = DeletedDate;

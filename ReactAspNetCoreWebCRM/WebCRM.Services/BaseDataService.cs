@@ -20,6 +20,10 @@ namespace WebCRM.Services
         protected readonly IEnumerable<string> _singleIncludeProperties;
         protected readonly IEnumerable<string> _listIncludeProperties;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="repository">The base data repository</param>
         public BaseDataService(IRepository<DataModel> repository) 
         {
             this._repository = repository;
@@ -27,6 +31,12 @@ namespace WebCRM.Services
             this._listIncludeProperties = new List<string>();
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="repository">The base data repository</param>
+        /// <param name="singleIncludeProperties">The child objects to include when a single object is returned</param>
+        /// <param name="listIncludeProperties">The child objects to return with each item in the list</param>
         public BaseDataService(IRepository<DataModel> repository,
             IEnumerable<string> singleIncludeProperties,
             IEnumerable<string> listIncludeProperties)
@@ -36,6 +46,12 @@ namespace WebCRM.Services
             this._listIncludeProperties = listIncludeProperties;
         }
 
+        /// <summary>
+        /// Returns the view model for the selected model id
+        /// </summary>
+        /// <param name="id">The id of the data model</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        /// <returns>IDataServiceResponseModel of the object</returns>
         public virtual async Task<IResponseModel<ViewModel>> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
             var repositoryResponse = await this._repository.GetByIdAsync(id, _singleIncludeProperties, cancellationToken);
@@ -49,6 +65,12 @@ namespace WebCRM.Services
             return repositoryResponse.ToResponseModel(viewModel);
         }
 
+        /// <summary>
+        /// Saves the base model to the database and returns the view model of the created model
+        /// </summary>
+        /// <param name="model">The view model</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        /// <returns>IDataServiceResponseModel of the object</returns>
         public virtual async Task<IResponseModel<ViewModel>> CreateAsync(ViewModel model, CancellationToken cancellationToken = default)
         {
             if (model == null)
@@ -66,6 +88,12 @@ namespace WebCRM.Services
             return repositoryResponse.ToResponseModel(model);
         }
 
+        /// <summary>
+        /// Updates the related base model in the database
+        /// </summary>
+        /// <param name="model">The view model</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        /// <returns>IDataServiceResponseModel of the object</returns>
         public virtual async Task<IResponseModel<ViewModel>> UpdateAsync(ViewModel model, CancellationToken cancellationToken = default)
         {
             if (model == null)
@@ -83,6 +111,12 @@ namespace WebCRM.Services
             return repositoryResponse.ToResponseModel(model);
         }
 
+        /// <summary>
+        /// Deletes the related object from the database
+        /// </summary>
+        /// <param name="model">The view model</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        /// <returns>IDataServiceResponseModel of the object</returns>
         public virtual async Task<IResponseModel<ViewModel>> DeleteAsync(ViewModel model, CancellationToken cancellationToken = default)
         {
             if (model == null)
@@ -99,6 +133,13 @@ namespace WebCRM.Services
             return repositoryResponse.ToResponseModel(model);
         }
 
+        /// <summary>
+        /// Returns a paginated list view models
+        /// </summary>
+        /// <param name="parameters">The pagination parameters</param>
+        /// <param name="expression">The filter expression</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        /// <returns>IPagedList of view models</returns>
         public virtual async Task<IPagedList<ViewModel>> RetrieveListAsync(
             QueryStringParameters parameters, 
             Expression<Func<DataModel, bool>>? expression = null, 
