@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using WebCRM.Data;
 
-namespace WebCRM.Services.Models
+namespace WebCRM.Services
 {
-    public abstract class SoftDeletedViewModel<T>: BaseViewModel<T>, ISoftDeleted where T : class, IDataModel<T>, ISoftDeleted, new()
+    public abstract class SoftDeletedViewModel<T> : BaseViewModel<T>, ISoftDeleted where T : class, IDataModel<T>, ISoftDeleted, new()
     {
         public SoftDeletedViewModel() { }
 
@@ -16,7 +16,7 @@ namespace WebCRM.Services.Models
             if (model != null)
             {
                 base.SetModel(model);
-                this.DeletedDate = model.DeletedDate;
+                DeletedDate = model.DeletedDate;
             }
         }
 
@@ -25,7 +25,7 @@ namespace WebCRM.Services.Models
         public override T ToBaseModel()
         {
             var model = base.ToBaseModel();
-            model.DeletedDate = this.DeletedDate;
+            model.DeletedDate = DeletedDate;
             return model;
         }
     }

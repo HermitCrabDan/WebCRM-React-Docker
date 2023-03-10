@@ -15,9 +15,7 @@ namespace WebCRM.Services.EntityServices
             : base(repository,
                   new List<string>
                   {
-                      nameof(ApplicationRole.SubRoles),
                       nameof(ApplicationRole.RoleMembers),
-                      nameof(ApplicationRole.ParentRoles),
                   },
                   new List<string>
                   {

@@ -25,11 +25,6 @@ namespace WebCRM.Services.Models
                 base.SetModel(model);
                 this.RoleName = model.RoleName;
 
-                if (model.SubRoles != null && model.SubRoles.Any())
-                {
-                    this.SubRoles = model.SubRoles.Select(x => new SubRoleViewModel(x)).ToList();
-                }
-
                 if (model.RoleMembers != null && model.RoleMembers.Any())
                 {
                     this.RoleMembers = model.RoleMembers.Select(x => new RoleMemberViewModel(x)).ToList();
@@ -38,8 +33,6 @@ namespace WebCRM.Services.Models
         }
 
         public string RoleName { get; set; } = string.Empty;
-
-        public List<SubRoleViewModel> SubRoles { get; set; } = new List<SubRoleViewModel>();
 
         public List<RoleMemberViewModel> RoleMembers { get; set; } = new List<RoleMemberViewModel>();
 
