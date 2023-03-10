@@ -7,13 +7,13 @@ using WebCRM.Data;
 
 namespace WebCRM.Services
 {
-    public interface IViewModel<DataModel>
+    public interface IDto<TEntity>
     {
         /// <summary>
         /// Sets the model values
         /// </summary>
         /// <param name="model">The data model</param>
-        void SetModel(DataModel model);
+        void SetModel(TEntity model);
 
         /// <summary>
         /// The data model Id
@@ -29,6 +29,6 @@ namespace WebCRM.Services
         /// Returns the base data model
         /// </summary>
         /// <returns>The data model</returns>
-        DataModel ToBaseModel();
+        TEntity ToBaseModel();
     }
 }

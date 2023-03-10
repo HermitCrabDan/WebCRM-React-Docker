@@ -7,9 +7,9 @@ using WebCRM.Data;
 
 namespace WebCRM.Services
 {
-    public abstract class SoftDeletedViewModel<DataModel> : BaseViewModel<DataModel>, ISoftDeleted where DataModel : class, IDataModel<DataModel>, ISoftDeleted, new()
+    public abstract class SoftDeletedDto<DataModel> : BaseDto<DataModel>, ISoftDeleted where DataModel : class, IDataModel<DataModel>, ISoftDeleted, new()
     {
-        public SoftDeletedViewModel() { }
+        public SoftDeletedDto() { }
 
         /// <summary>
         /// Sets the model values

@@ -9,7 +9,7 @@ using WebCRM.Services.Models;
 
 namespace WebCRM.Services.EntityServices
 {
-    public class UserDataService : BaseDataService<UserViewModel, User>
+    public class UserDataService : BaseDataService<UserDto, User>
     {
         public UserDataService(IRepository<User> repository)
             : base(

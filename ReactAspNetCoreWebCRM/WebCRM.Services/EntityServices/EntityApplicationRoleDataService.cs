@@ -9,7 +9,7 @@ using WebCRM.Services.ViewModels;
 
 namespace WebCRM.Services.EntityServices
 {
-    public class EntityApplicationRoleDataService : BaseDataService<EntityApplicationRoleViewModel, EntityApplicationRole>
+    public class EntityApplicationRoleDataService : BaseDataService<EntityApplicationRoleDto, EntityApplicationRole>
     {
         public EntityApplicationRoleDataService(IRepository<EntityApplicationRole> repository)
             : base(repository,

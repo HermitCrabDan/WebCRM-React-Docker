@@ -7,13 +7,13 @@ using WebCRM.Data;
 
 namespace WebCRM.Services.Models
 {
-    public class UserViewModel : SoftDeletedViewModel<User>, IUser
+    public class UserDto : SoftDeletedDto<User>, IUser
     {
-        public UserViewModel() 
+        public UserDto() 
         {
         }
 
-        public UserViewModel(User model)
+        public UserDto(User model)
         {
             this.SetModel(model);
         }
@@ -29,12 +29,12 @@ namespace WebCRM.Services.Models
 
                 if (model.ContractCustomers != null && model.ContractCustomers.Any())
                 {
-                    this.CustomerContracts = model.ContractCustomers.Select(x => new ContractCustomerViewModel(x)).ToList();
+                    this.CustomerContracts = model.ContractCustomers.Select(x => new ContractCustomerDto(x)).ToList();
                 }
 
                 if (model.UserRoles != null && model.UserRoles.Any())
                 {
-                    this.RoleMemberships = model.UserRoles.Select(x => new RoleMemberViewModel(x)).ToList();
+                    this.RoleMemberships = model.UserRoles.Select(x => new RoleMemberDto(x)).ToList();
                 }
             }
         }
@@ -43,9 +43,9 @@ namespace WebCRM.Services.Models
         public string Name { get; set; } = string.Empty;
         public int UserType { get; set; }
 
-        public List<ContractCustomerViewModel> CustomerContracts { get; set; } = new List<ContractCustomerViewModel>();
+        public List<ContractCustomerDto> CustomerContracts { get; set; } = new List<ContractCustomerDto>();
 
-        public List<RoleMemberViewModel> RoleMemberships { get; set; } = new List<RoleMemberViewModel>();
+        public List<RoleMemberDto> RoleMemberships { get; set; } = new List<RoleMemberDto>();
 
         public override User ToBaseModel()
         {

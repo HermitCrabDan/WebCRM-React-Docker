@@ -9,15 +9,22 @@ using WebCRM.Data;
 
 namespace WebCRM.Services
 {
-    public abstract class BaseViewModel<DataModel> : IViewModel<DataModel> where DataModel : class, IDataModel<DataModel>, new()
+    /// <summary>
+    /// The base dto model to be inherited from
+    /// </summary>
+    /// <typeparam name="TEntity">The IDataModel Entity</typeparam>
+    public abstract class BaseDto<TEntity> : IDto<TEntity> where TEntity : class, IDataModel<TEntity>, new()
     {
-        public BaseViewModel() { }
+        /// <summary>
+        /// Base constructor
+        /// </summary>
+        public BaseDto() { }
 
         /// <summary>
         /// Sets the model values
         /// </summary>
         /// <param name="model">The data model</param>
-        public virtual void SetModel(DataModel model)
+        public virtual void SetModel(TEntity model)
         {
             if (model != null)
             {
@@ -40,30 +47,30 @@ namespace WebCRM.Services
         /// Returns the base data model
         /// </summary>
         /// <returns>The data model</returns>
-        public virtual DataModel ToBaseModel()
+        public virtual TEntity ToBaseModel()
         {
-            return new DataModel { Id = Id, CreatedDate = CreatedDate };
+            return new TEntity { Id = Id, CreatedDate = CreatedDate };
         }
     }
 
-    public static class ViewModelExtensions
+    public static class DtoExtensions
     {
-        public static async Task<IPagedList<ViewModel>> ToPagedViewModelList<ViewModel, DataModel>(
-            this IQueryable<DataModel> dataSource,
+        public static async Task<IPagedList<Dto>> ToPagedViewModelList<Dto, TEntity>(
+            this IQueryable<TEntity> dataSource,
             int pageIndex,
             int pageSize,
             bool getOnlyTotalCount = false)
-            where ViewModel : class, IViewModel<DataModel>, new()
+            where Dto : class, IDto<TEntity>, new()
         {
             if (dataSource == null)
-                return new PagedList<ViewModel>(new List<ViewModel>(), pageIndex, pageSize);
+                return new PagedList<Dto>(new List<Dto>(), pageIndex, pageSize);
 
             //min allowed page size is 1
             pageSize = Math.Max(pageSize, 1);
 
             var count = await dataSource.CountAsync();
 
-            var data = new List<ViewModel>();
+            var data = new List<Dto>();
 
             if (!getOnlyTotalCount)
             {
@@ -72,14 +79,14 @@ namespace WebCRM.Services
                 {
                     foreach (var sourceItem in sourceList)
                     {
-                        var model = new ViewModel();
+                        var model = new Dto();
                         model.SetModel(sourceItem);
                         data.Add(model);
                     }
                 }
             }
 
-            return new PagedList<ViewModel>(data, pageIndex, pageSize, count);
+            return new PagedList<Dto>(data, pageIndex, pageSize, count);
         }
     }
 }

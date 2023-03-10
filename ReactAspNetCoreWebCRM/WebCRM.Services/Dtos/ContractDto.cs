@@ -8,13 +8,13 @@ using WebCRM.Data;
 
 namespace WebCRM.Services.Models
 {
-    public class ContractViewModel : SoftDeletedViewModel<Contract>, IContract
+    public class ContractDto : SoftDeletedDto<Contract>, IContract
     {
-        public ContractViewModel()
+        public ContractDto()
         {
         }
 
-        public ContractViewModel(Contract model) 
+        public ContractDto(Contract model) 
         {
             this.SetModel(model);
         }
@@ -32,33 +32,56 @@ namespace WebCRM.Services.Models
 
                 if (model.ContractPayments != null && model.ContractPayments.Any())
                 {
-                    this.ContractPayments = model.ContractPayments.Select(x => new ContractPaymentViewModel(x)).ToList();
+                    this.ContractPayments = model.ContractPayments.Select(x => new ContractPaymentDto(x)).ToList();
                 }
 
                 if (model.ContractMonthlyPayments != null && model.ContractMonthlyPayments.Any())
                 {
-                    this.ContractMonthlyPayments = model.ContractMonthlyPayments.Select(x => new ContractMonthlyPaymentViewModel(x)).ToList();
+                    this.ContractMonthlyPayments = model.ContractMonthlyPayments.Select(x => new ContractMonthlyPaymentDto(x)).ToList();
                 }
 
                 if (model.ContractCustomers != null && model.ContractCustomers.Any())
                 {
-                    this.ContractCustomers = model.ContractCustomers.Select(x => new ContractCustomerViewModel(x)).ToList();
+                    this.ContractCustomers = model.ContractCustomers.Select(x => new ContractCustomerDto(x)).ToList();
                 }
 
                 if (model.ContractNotes != null && model.ContractNotes.Any())
                 {
-                    this.ContractNotes = model.ContractNotes.Select(x => new ContractNoteViewModel(x)).ToList();
+                    this.ContractNotes = model.ContractNotes.Select(x => new ContractNoteDto(x)).ToList();
                 }
             }
         }
 
+        /// <summary>
+        /// The amount of the contract
+        /// </summary>
         public decimal ContractAmount { get; set; }
+
+        /// <summary>
+        /// The date the contract ended
+        /// </summary>
         public DateTime? EndDate { get; set; }
+
+        /// <summary>
+        /// The regular payment date
+        /// </summary>
         public int PaymentDayOfTheMonth { get; set; }
+
+        /// <summary>
+        /// The regular payment amount
+        /// </summary>
         public decimal RegularPaymentAmount { get; set; }
+
+        /// <summary>
+        /// The start date of the contract
+        /// </summary>
         public DateTime StartDate { get; set; }
 
         private decimal? contractAmountPaid { get; set; }
+
+        /// <summary>
+        /// The amount of the contract that is paid
+        /// </summary>
         public decimal ContractAmountPaid 
         {
             get
@@ -78,6 +101,9 @@ namespace WebCRM.Services.Models
             }
         }
 
+        /// <summary>
+        /// The contract amount remaining
+        /// </summary>
         public decimal ContractAmountRemaining
         {
             get
@@ -86,13 +112,25 @@ namespace WebCRM.Services.Models
             }
         }
 
-        public List<ContractPaymentViewModel> ContractPayments { get; set; } = new List<ContractPaymentViewModel>();
+        /// <summary>
+        /// The dtos matching the contract payments
+        /// </summary>
+        public List<ContractPaymentDto> ContractPayments { get; set; } = new List<ContractPaymentDto>();
 
-        public List<ContractMonthlyPaymentViewModel> ContractMonthlyPayments { get; set; } = new List<ContractMonthlyPaymentViewModel>();
+        /// <summary>
+        /// The Contract monthly payments
+        /// </summary>
+        public List<ContractMonthlyPaymentDto> ContractMonthlyPayments { get; set; } = new List<ContractMonthlyPaymentDto>();
 
-        public List<ContractCustomerViewModel> ContractCustomers { get; set; } = new List<ContractCustomerViewModel>();
+        /// <summary>
+        /// The dtos of the users associated with the contract
+        /// </summary>
+        public List<ContractCustomerDto> ContractCustomers { get; set; } = new List<ContractCustomerDto>();
 
-        public List<ContractNoteViewModel> ContractNotes { get; set; } = new List<ContractNoteViewModel>();
+        /// <summary>
+        /// The notes associated with the contract
+        /// </summary>
+        public List<ContractNoteDto> ContractNotes { get; set; } = new List<ContractNoteDto>();
 
         public override Contract ToBaseModel()
         {

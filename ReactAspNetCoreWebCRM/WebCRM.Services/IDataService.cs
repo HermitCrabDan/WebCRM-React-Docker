@@ -11,9 +11,9 @@ namespace WebCRM.Services
     /// <summary>
     /// The data service for view models
     /// </summary>
-    /// <typeparam name="ViewModel">The view model</typeparam>
-    /// <typeparam name="DataModel">The data model</typeparam>
-    public interface IDataService<ViewModel, DataModel> where ViewModel : class, IViewModel<DataModel>, new()
+    /// <typeparam name="Dto">The view model</typeparam>
+    /// <typeparam name="TEntity">The data model</typeparam>
+    public interface IDataService<Dto, TEntity> where Dto : class, IDto<TEntity>, new()
     {
         /// <summary>
         /// Returns the view model for the selected model id
@@ -21,7 +21,7 @@ namespace WebCRM.Services
         /// <param name="id">The id of the data model</param>
         /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>IDataServiceResponseModel of the object</returns>
-        Task<IResponseModel<ViewModel>> GetByIdAsync(int id, CancellationToken cancellationToken = default);
+        Task<IResponseModel<Dto>> GetByIdAsync(int id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Saves the base model to the database and returns the view model of the created model
@@ -29,7 +29,7 @@ namespace WebCRM.Services
         /// <param name="model">The view model</param>
         /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>IDataServiceResponseModel of the object</returns>
-        Task<IResponseModel<ViewModel>> CreateAsync(ViewModel model, CancellationToken cancellationToken = default);
+        Task<IResponseModel<Dto>> CreateAsync(Dto model, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates the related base model in the database
@@ -37,7 +37,7 @@ namespace WebCRM.Services
         /// <param name="model">The view model</param>
         /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>IDataServiceResponseModel of the object</returns>
-        Task<IResponseModel<ViewModel>> UpdateAsync(ViewModel model, CancellationToken cancellationToken = default);
+        Task<IResponseModel<Dto>> UpdateAsync(Dto model, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes the related object from the database
@@ -45,7 +45,7 @@ namespace WebCRM.Services
         /// <param name="model">The view model</param>
         /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>IDataServiceResponseModel of the object</returns>
-        Task<IResponseModel<ViewModel>> DeleteAsync(ViewModel model, CancellationToken cancellationToken = default);
+        Task<IResponseModel<Dto>> DeleteAsync(Dto model, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Returns a paginated list view models
@@ -54,9 +54,9 @@ namespace WebCRM.Services
         /// <param name="expression">The filter expression</param>
         /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>IPagedList of view models</returns>
-        Task<IPagedList<ViewModel>> RetrieveListAsync(
+        Task<IPagedList<Dto>> RetrieveListAsync(
             QueryStringParameters parameters, 
-            Expression<Func<DataModel, bool>>? expression = null, 
+            Expression<Func<TEntity, bool>>? expression = null, 
             CancellationToken cancellationToken = default);
     }
 }

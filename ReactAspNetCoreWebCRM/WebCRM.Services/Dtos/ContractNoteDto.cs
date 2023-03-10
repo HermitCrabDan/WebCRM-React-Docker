@@ -7,11 +7,11 @@ using WebCRM.Data;
 
 namespace WebCRM.Services.Models
 {
-    public class ContractNoteViewModel : BaseViewModel<ContractNote>, IContractNote
+    public class ContractNoteDto : BaseDto<ContractNote>, IContractNote
     {
-        public ContractNoteViewModel() { }
+        public ContractNoteDto() { }
 
-        public ContractNoteViewModel(ContractNote model)
+        public ContractNoteDto(ContractNote model)
         {
             this.SetModel(model);
         }
@@ -27,16 +27,30 @@ namespace WebCRM.Services.Models
 
                 if (model.User != null)
                 {
-                    this.User = new UserViewModel(model.User);
+                    this.User = new UserDto(model.User);
                 }
             }
         }
 
+        /// <summary>
+        /// The id of the contract
+        /// </summary>
         public int ContractId { get; set; }
+
+        /// <summary>
+        /// The note text
+        /// </summary>
         public string NoteText { get; set; } = string.Empty;
+        
+        /// <summary>
+        /// The id of the user that created the note
+        /// </summary>
         public int UserId { get; set; }
 
-        public UserViewModel User { get; set; } = new UserViewModel();
+        /// <summary>
+        /// The dto of the user that created the note
+        /// </summary>
+        public UserDto User { get; set; } = new UserDto();
 
         public override ContractNote ToBaseModel()
         {

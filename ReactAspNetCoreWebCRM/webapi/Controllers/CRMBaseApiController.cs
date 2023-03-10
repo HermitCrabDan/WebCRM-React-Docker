@@ -8,7 +8,7 @@ namespace webapi.Controllers
 {
     [ApiController]
     public class CRMBaseApiController<ViewModel, DataModel>: ControllerBase 
-        where ViewModel : class, IViewModel<DataModel>, new () 
+        where ViewModel : class, IDto<DataModel>, new () 
         where DataModel : class, IDataModel<DataModel>, new()
     {
         protected IDataService<ViewModel, DataModel> _dataService;

@@ -21,33 +21,33 @@ namespace WebCRM.Services.Security
         /// <summary>
         /// Checks if the user can view all of the entity
         /// </summary>
-        /// <typeparam name="DataModel">The entity type</typeparam>
+        /// <typeparam name="TEntity">The entity type</typeparam>
         /// <param name="userId">The id of the user</param>
         /// <returns>A boolean value of true or false</returns>
-        Task<bool> CanViewAllAsync<DataModel>(int userId);
+        Task<bool> CanViewAllAsync<TEntity>(int userId) where TEntity : class, IDataModel<TEntity>, new();
 
         /// <summary>
         /// Checks if the user can create the entity
         /// </summary>
-        /// <typeparam name="DataModel">The entity type</typeparam>
+        /// <typeparam name="TEntity">The entity type</typeparam>
         /// <param name="userId">The id of the user</param>
         /// <returns>A boolean value of true or false</returns>
-        Task<bool> CanCreateAsync<DataModel>(int userId);
+        Task<bool> CanCreateAsync<TEntity>(int userId) where TEntity : class, IDataModel<TEntity>, new();
 
         /// <summary>
         /// Checks if the user can delete the entity
         /// </summary>
-        /// <typeparam name="DataModel">The entity type</typeparam>
+        /// <typeparam name="TEntity">The entity type</typeparam>
         /// <param name="userId">The id of the user</param>
         /// <returns>A boolean value of true or false</returns>
-        Task<bool> CanDeleteAsync<DataModel>(int userId);
+        Task<bool> CanDeleteAsync<TEntity>(int userId) where TEntity : class, IDataModel<TEntity>, new();
 
         /// <summary>
         /// Checks if the user can update the entity
         /// </summary>
-        /// <typeparam name="DataModel">The entity type</typeparam>
+        /// <typeparam name="TEntity">The entity type</typeparam>
         /// <param name="userId">The id of the user</param>
         /// <returns>A boolean value of true or false</returns>
-        Task<bool> CanUpdateAsync<DataModel>(int userId);
+        Task<bool> CanUpdateAsync<TEntity>(int userId) where TEntity : class, IDataModel<TEntity>, new();
     }
 }
