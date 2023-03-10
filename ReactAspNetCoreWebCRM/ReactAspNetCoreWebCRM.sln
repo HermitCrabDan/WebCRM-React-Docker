@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "WebCRM.ReactApp", "reactapp\WebCRM.ReactApp.esproj", "{66D397CE-BC4E-4059-B7B3-1CE834001527}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "WebCRM.ReactApp", "WebCRM.ReactApp\WebCRM.ReactApp.esproj", "{66D397CE-BC4E-4059-B7B3-1CE834001527}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCRM.WebApi", "webapi\WebCRM.WebApi.csproj", "{579F13C5-B9EA-475E-8833-61794A4EDB35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCRM.WebApi", "WebCRM.WebApi\WebCRM.WebApi.csproj", "{579F13C5-B9EA-475E-8833-61794A4EDB35}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCRM.Data", "WebCRM.Data\WebCRM.Data.csproj", "{F9AED558-1A31-4818-83E2-6E9BB4CC5C84}"
 EndProject

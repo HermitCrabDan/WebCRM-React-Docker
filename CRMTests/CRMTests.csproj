@@ -15,4 +15,16 @@
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReactAspNetCoreWebCRM\WebCRM.WebApi\WebCRM.WebApi.csproj" />
+    <ProjectReference Include="..\ReactAspNetCoreWebCRM\WebCRM.Common\WebCRM.Common.csproj" />
+    <ProjectReference Include="..\ReactAspNetCoreWebCRM\WebCRM.Data\WebCRM.Data.csproj" />
+    <ProjectReference Include="..\ReactAspNetCoreWebCRM\WebCRM.Services\WebCRM.Services.csproj" />
+  </ItemGroup>
+
 </Project>
