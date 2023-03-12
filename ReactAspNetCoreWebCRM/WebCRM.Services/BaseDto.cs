@@ -28,8 +28,9 @@ namespace WebCRM.Services
         {
             if (model != null)
             {
-                Id = model.Id;
-                CreatedDate = model.CreatedDate;
+                this.Id = model.Id;
+                this.CreatedDate = model.CreatedDate;
+                this.ModifiedDate = model.ModifiedDate;
             }
         }
 
@@ -44,22 +45,40 @@ namespace WebCRM.Services
         public DateTime CreatedDate { get; set; }
 
         /// <summary>
+        /// The date the entity was last modified
+        /// </summary>
+        public DateTime? ModifiedDate { get; set; }
+
+        /// <summary>
         /// Returns the base data model
         /// </summary>
         /// <returns>The data model</returns>
         public virtual TEntity ToBaseModel()
         {
-            return new TEntity { Id = Id, CreatedDate = CreatedDate };
+            return new TEntity 
+            { 
+                Id = this.Id, 
+                CreatedDate = this.CreatedDate, 
+                ModifiedDate = this.ModifiedDate ,
+            };
         }
     }
 
     public static class DtoExtensions
     {
+        /// <summary>
+        /// Creates a paged list of the dto based on the base entity
+        /// </summary>
+        /// <typeparam name="Dto">The view model</typeparam>
+        /// <typeparam name="TEntity">The base model</typeparam>
+        /// <param name="dataSource">The entity table</param>
+        /// <param name="pageIndex">the page index</param>
+        /// <param name="pageSize">the page size</param>
+        /// <returns>PagedList of the dto</returns>
         public static async Task<IPagedList<Dto>> ToPagedViewModelList<Dto, TEntity>(
             this IQueryable<TEntity> dataSource,
             int pageIndex,
-            int pageSize,
-            bool getOnlyTotalCount = false)
+            int pageSize)
             where Dto : class, IDto<TEntity>, new()
         {
             if (dataSource == null)
@@ -72,17 +91,14 @@ namespace WebCRM.Services
 
             var data = new List<Dto>();
 
-            if (!getOnlyTotalCount)
+            var sourceList = await dataSource.Skip(pageIndex * pageSize).Take(pageSize).AsQueryable().ToListAsync();
+            if (sourceList.Any())
             {
-                var sourceList = await dataSource.Skip(pageIndex * pageSize).Take(pageSize).AsQueryable().ToListAsync();
-                if (sourceList.Any())
+                foreach (var sourceItem in sourceList)
                 {
-                    foreach (var sourceItem in sourceList)
-                    {
-                        var model = new Dto();
-                        model.SetModel(sourceItem);
-                        data.Add(model);
-                    }
+                    var model = new Dto();
+                    model.SetModel(sourceItem);
+                    data.Add(model);
                 }
             }
 

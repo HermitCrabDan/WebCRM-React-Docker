@@ -28,5 +28,23 @@ namespace WebCRM.Data
         /// The entities associated with the role
         /// </summary>
         public virtual ICollection<EntityApplicationRole> EntityApplicationRoles { get; set; }
+
+        public override bool SecureUpdate(ApplicationRole model)
+        {
+            var propertiesChanged = this.RoleName != model.RoleName;
+
+            if (propertiesChanged) 
+            {
+                this.RoleName = model.RoleName;
+            }
+
+            return propertiesChanged;
+        }
+
+        public override string ToString()
+        {
+            return $"ApplicationRole:{Id}=" +
+                $"RoleName:{RoleName}";
+        }
     }
 }

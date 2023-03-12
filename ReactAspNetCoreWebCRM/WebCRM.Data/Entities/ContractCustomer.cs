@@ -34,5 +34,26 @@ namespace WebCRM.Data
         /// </summary>
         [ForeignKey(nameof(CustomerId))]
         public virtual User Customer { get; set; }
+
+        public override bool SecureUpdate(ContractCustomer model)
+        {
+            var propertiesChanged = this.ContractId != model.ContractId
+                || this.CustomerId != model.CustomerId;
+
+            if (propertiesChanged) 
+            {
+                this.ContractId = model.ContractId;
+                this.CustomerId = model.CustomerId;
+            }
+
+            return propertiesChanged;
+        }
+
+        public override string ToString()
+        {
+            return $"ContractCustomer:{Id}=" +
+                $"ContractId:{ContractId}," +
+                $"CustomerId:{CustomerId}";
+        }
     }
 }

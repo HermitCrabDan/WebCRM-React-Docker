@@ -57,7 +57,7 @@ namespace WebCRM.Services
             var repositoryResponse = await this._repository.GetByIdAsync(id, _singleIncludeProperties, cancellationToken);
             var viewModel = new Dto();
 
-            if (repositoryResponse.Value != null && repositoryResponse.Success)
+            if (repositoryResponse.Value != null)
             {
                 viewModel.SetModel(repositoryResponse.Value);
             }
@@ -80,7 +80,7 @@ namespace WebCRM.Services
 
             var modelToCreate = model.ToBaseModel();
             var repositoryResponse = await this._repository.CreateAsync(modelToCreate, cancellationToken);
-            if (repositoryResponse.Value != null && repositoryResponse.Success)
+            if (repositoryResponse.Value != null)
             {
                 model.SetModel(repositoryResponse.Value);
             }
@@ -103,7 +103,7 @@ namespace WebCRM.Services
 
             var modelToUpdate = model.ToBaseModel();
             var repositoryResponse = await this._repository.UpdateAsync(modelToUpdate, cancellationToken);
-            if (repositoryResponse.Value != null && repositoryResponse.Success)
+            if (repositoryResponse.Value != null)
             {
                 model.SetModel(repositoryResponse.Value);
             }
@@ -125,7 +125,7 @@ namespace WebCRM.Services
             }
 
             var repositoryResponse = await this._repository.DeleteAsync(model.Id, cancellationToken);
-            if (repositoryResponse.Value != null && repositoryResponse.Success)
+            if (repositoryResponse.Value != null)
             {
                 model.SetModel(repositoryResponse.Value);
             }

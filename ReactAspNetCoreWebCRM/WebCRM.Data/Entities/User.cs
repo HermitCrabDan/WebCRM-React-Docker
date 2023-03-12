@@ -9,6 +9,8 @@
         {
             this.Email = string.Empty;
             this.Name = string.Empty;
+            this.Password = string.Empty;
+            this.UserName = string.Empty;
             this.UserRoles = new List<RoleMember>();
             this.ContractCustomers = new List<ContractCustomer>();
             this.ContractNotesCreatedByUser = new List<ContractNote>();
@@ -27,9 +29,14 @@
         public string Name { get; set; }
 
         /// <summary>
-        /// The user type
+        /// The User's login
         /// </summary>
-        public int UserType { get; set; }
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// The User's Password
+        /// </summary>
+        public string Password { get; set; }
 
         /// <summary>
         /// The Contract Customers associated with the user
@@ -55,5 +62,52 @@
         /// The contract payments authorized to be skipped by the user
         /// </summary>
         public virtual ICollection<ContractMonthlyPayment> ContractMonthlyPaymentsSkippedByUser { get; set; }
+
+        public override bool SecureUpdate(User model)
+        {
+            var propertiesChanged = false;
+
+            this.Name = model.Name;
+            this.Email = model.Email;
+
+            return propertiesChanged;
+        }
+
+        /// <summary>
+        /// Updates the user's password
+        /// </summary>
+        /// <param name="newPassword">The new Password</param>
+        /// <returns>true if the new password is different from the current, false otherwise</returns>
+        public bool SetPassword(string newPassword)
+        {
+            var passwordChanged = this.Password != newPassword;
+            if (passwordChanged)
+            {
+                this.Password = newPassword;
+            }
+            return passwordChanged;
+        }
+
+        /// <summary>
+        /// Updates the user's login
+        /// </summary>
+        /// <param name="newUserName">The new UserName</param>
+        /// <returns>true if the new UserName is different from the current, false otherwise</returns>
+        public bool SetUserName(string newUserName)
+        {
+            var userNameChanged = this.UserName != newUserName;
+            if (userNameChanged) 
+            {
+                this.UserName = newUserName;
+            }
+            return userNameChanged;
+        }
+
+        public override string ToString()
+        {
+            return $"User:{Id}=" +
+                $"Name:{Name}," +
+                $"Email{Email}";
+        }
     }
 }

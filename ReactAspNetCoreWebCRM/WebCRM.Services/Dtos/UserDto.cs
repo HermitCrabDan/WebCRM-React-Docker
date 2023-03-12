@@ -25,7 +25,6 @@ namespace WebCRM.Services.Models
                 base.SetModel(model);
                 this.Email = model.Email;
                 this.Name = model.Name;
-                this.UserType = model.UserType;
 
                 if (model.ContractCustomers != null && model.ContractCustomers.Any())
                 {
@@ -39,9 +38,15 @@ namespace WebCRM.Services.Models
             }
         }
 
+        /// <summary>
+        /// The user's email
+        /// </summary>
         public string Email { get; set; } = string.Empty;
+
+        /// <summary>
+        /// The user's Name
+        /// </summary>
         public string Name { get; set; } = string.Empty;
-        public int UserType { get; set; }
 
         public List<ContractCustomerDto> CustomerContracts { get; set; } = new List<ContractCustomerDto>();
 
@@ -53,7 +58,6 @@ namespace WebCRM.Services.Models
 
             model.Email = this.Email;
             model.Name = this.Name;
-            model.UserType = this.UserType;
 
             return model;
         }

@@ -2,29 +2,6 @@
 {
     public class CRMConstants
     {
-        public static readonly List<Type> CRMBaseTypes = new()
-        { 
-            typeof(DateTime),
-            typeof(DateTime?),
-            typeof(string),
-            typeof(int),
-            typeof(int?),
-            typeof(decimal),
-            typeof(decimal?),
-            typeof(double),
-            typeof(double?),
-            typeof(float),
-            typeof(float?),
-            typeof(long),
-            typeof(long?),
-            typeof(short),
-            typeof(short?),
-            typeof(byte),
-            typeof(byte?),
-            typeof(bool),
-            typeof(bool?),
-        };
-
         public static readonly string SuccessfullySavedChanges = "Successfully saved changes";
 
         public static readonly string NoChangesToSave = "No changes to save";

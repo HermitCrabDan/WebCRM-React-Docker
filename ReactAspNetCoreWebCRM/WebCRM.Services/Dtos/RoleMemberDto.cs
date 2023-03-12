@@ -7,8 +7,14 @@ using WebCRM.Data;
 
 namespace WebCRM.Services.Models
 {
+    /// <summary>
+    /// The RoleMember entity dto
+    /// </summary>
     public class RoleMemberDto : BaseDto<RoleMember>, IRoleMember
     {
+        /// <summary>
+        /// Base constructor
+        /// </summary>
         public RoleMemberDto() 
         {
         }
@@ -38,11 +44,24 @@ namespace WebCRM.Services.Models
             }
         }
 
+        /// <summary>
+        /// The Id of the role
+        /// </summary>
         public int RoleId { get; set; }
+
+        /// <summary>
+        /// The id of the user
+        /// </summary>
         public int UserId { get; set; }
 
+        /// <summary>
+        /// The application role dto
+        /// </summary>
         public ApplicationRoleDto ApplicationRole { get; set; } = new ApplicationRoleDto();
 
+        /// <summary>
+        /// The user dto
+        /// </summary>
         public UserDto User { get; set; } = new UserDto();
 
         public override RoleMember ToBaseModel()

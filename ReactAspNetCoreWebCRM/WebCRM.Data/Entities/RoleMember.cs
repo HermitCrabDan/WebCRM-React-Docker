@@ -35,14 +35,25 @@ namespace WebCRM.Data
         [ForeignKey(nameof(UserId))]
         public virtual User User { get; set; }
 
-        /// <summary>
-        /// The secure update method overridden to always return false
-        /// </summary>
-        /// <param name="model">The updated values</param>
-        /// <returns>false</returns>
         public override bool SecureUpdate(RoleMember model)
         {
-            return false;
+            var propertiesChanged = this.RoleId != model.RoleId
+                || this.UserId != model.UserId;
+
+            if (propertiesChanged) 
+            {
+                this.UserId = model.UserId;
+                this.RoleId = model.RoleId;
+            }
+
+            return propertiesChanged;
+        }
+
+        public override string ToString()
+        {
+            return $"RoleMember:{Id}=" +
+                $"RoleId:{RoleId}," +
+                $"UserId:{UserId}";
         }
     }
 }
