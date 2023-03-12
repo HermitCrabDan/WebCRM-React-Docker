@@ -25,3 +25,6 @@
 /ReactAspNetCoreWebCRM/WebCRM.ReactApp/node_modules
 /ReactAspNetCoreWebCRM/WebCRM.ReactApp/.vscode
 /ReactAspNetCoreWebCRM/WebCRM.ReactApp/obj/Debug
+/ReactAspNetCoreWebCRM/CRM.Tests/obj/Debug/net7.0
+/ReactAspNetCoreWebCRM/CRM.Tests/bin/Debug/net7.0
+/ReactAspNetCoreWebCRM/CRM.Tests/obj
