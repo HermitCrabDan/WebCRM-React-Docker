@@ -47,11 +47,6 @@ namespace WebCRM.Services.Models
                 {
                     this.ContractCustomers = model.ContractCustomers.Select(x => new ContractCustomerDto(x)).ToList();
                 }
-
-                if (model.ContractNotes != null && model.ContractNotes.Any())
-                {
-                    this.ContractNotes = model.ContractNotes.Select(x => new ContractNoteDto(x)).ToList();
-                }
             }
         }
 
@@ -89,9 +84,9 @@ namespace WebCRM.Services.Models
         {
             get
             {
-                if (contractAmountPaid.HasValue && contractAmountPaid.Value > 0)
+                if (this.contractAmountPaid.HasValue && this.contractAmountPaid.Value > 0)
                 {
-                    return contractAmountPaid.Value;
+                    return this.contractAmountPaid.Value;
                 }
 
                 if (this.ContractPayments != null && this.ContractPayments.Any())
@@ -129,11 +124,6 @@ namespace WebCRM.Services.Models
         /// The dtos of the users associated with the contract
         /// </summary>
         public List<ContractCustomerDto> ContractCustomers { get; set; } = new List<ContractCustomerDto>();
-
-        /// <summary>
-        /// The notes associated with the contract
-        /// </summary>
-        public List<ContractNoteDto> ContractNotes { get; set; } = new List<ContractNoteDto>();
 
         public override Contract ToBaseModel()
         {

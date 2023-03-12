@@ -14,8 +14,8 @@ namespace WebCRM.Services
         int UserId { get; set; }
 
         /// <summary>
-        /// The user name used to log in
+        /// The user display name
         /// </summary>
-        string UserName { get; set; }
+        string UserDisplayName { get; set; }
     }
 }

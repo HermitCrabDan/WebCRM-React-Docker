@@ -18,7 +18,6 @@ namespace WebCRM.Services.EntityServices
                   {
                       nameof(Contract.ContractCustomers),
                       nameof(Contract.ContractPayments),
-                      nameof(Contract.ContractNotes),
                       nameof(Contract.ContractMonthlyPayments)
                   },
                   new List<string>
