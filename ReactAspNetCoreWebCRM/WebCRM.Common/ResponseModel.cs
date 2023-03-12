@@ -30,12 +30,16 @@ namespace WebCRM.Common
         /// <param name="databaseChanged">bool indicating if there where changes</param>
         /// <param name="message">return message</param>
         /// <param name="value">return value</param>
-        public ResponseModel(bool success, bool databaseChanged, string message, T value)
+        public ResponseModel(
+            bool success = false, 
+            bool databaseChanged = false, 
+            string message = "", 
+            T? value = null)
         {
             this.Success = success;
             this.DatabaseChanged = databaseChanged;
             this.Message = message;
-            this.Value = value;
+            this.Value = value ?? new T();
         }
 
         /// <summary>

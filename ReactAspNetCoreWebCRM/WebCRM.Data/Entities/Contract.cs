@@ -60,5 +60,35 @@ namespace WebCRM.Data
         /// The monthly payments for the contract
         /// </summary>
         public virtual ICollection<ContractMonthlyPayment> ContractMonthlyPayments { get; set; }
+
+        public override bool SecureUpdate(Contract model)
+        {
+            var propertiesChanged = this.ContractAmount != model.ContractAmount
+                || this.EndDate != model.EndDate
+                || this.StartDate != model.StartDate
+                || this.PaymentDayOfTheMonth != model.PaymentDayOfTheMonth
+                || this.RegularPaymentAmount != model.RegularPaymentAmount;
+
+            if (propertiesChanged)
+            {
+                this.ContractAmount = model.ContractAmount;
+                this.EndDate = model.EndDate;
+                this.StartDate = model.StartDate;
+                this.PaymentDayOfTheMonth = model.PaymentDayOfTheMonth;
+                this.RegularPaymentAmount = model.RegularPaymentAmount;
+            }
+
+            return propertiesChanged;
+        }
+
+        public override string ToString()
+        {
+            return $"Contract:{Id}=" +
+                $"ContractAmount:{ContractAmount}," +
+                $"EndDate:{EndDate}," +
+                $"StartDate:{StartDate}," +
+                $"PaymentDayOfTheMonth:{PaymentDayOfTheMonth}," +
+                $"RegularPaymentAmount:{RegularPaymentAmount}";
+        }
     }
 }

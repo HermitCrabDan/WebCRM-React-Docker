@@ -40,5 +40,29 @@ namespace WebCRM.Data
         /// </summary>
         [ForeignKey(nameof(UserId))]
         public virtual User User { get; set; }
+
+        public override bool SecureUpdate(ContractNote model)
+        {
+            var propertiesChanged = this.ContractId != model.ContractId
+                || this.UserId != model.UserId
+                || this.NoteText != model.NoteText;
+
+            if (propertiesChanged) 
+            {
+                this.ContractId = model.ContractId;
+                this.UserId = model.UserId;
+                this.NoteText = model.NoteText;
+            }
+
+            return propertiesChanged;
+        }
+
+        public override string ToString()
+        {
+            return $"ContractNote:{Id}=" +
+                $"ContractId:{ContractId}," +
+                $"UserId:{UserId}," +
+                $"NoteText:{NoteText}";
+        }
     }
 }

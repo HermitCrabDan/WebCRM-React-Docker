@@ -51,5 +51,32 @@ namespace WebCRM.Data
         /// </summary>
         [ForeignKey(nameof(ContractMonthlyPaymentId))]
         public virtual ContractMonthlyPayment ContractMonthlyPayment { get; set; }
+
+        public override bool SecureUpdate(ContractPayment model)
+        {
+            var propertiesChanged = this.ContractId != model.ContractId
+                || this.ContractMonthlyPaymentId != model.ContractMonthlyPaymentId
+                || this.EnteredByUserId != model.EnteredByUserId
+                || this.PaymentAmount != model.PaymentAmount;
+
+            if (propertiesChanged) 
+            {
+                this.ContractId = model.ContractId;
+                this.ContractMonthlyPaymentId = model.ContractMonthlyPaymentId;
+                this.EnteredByUserId = model.EnteredByUserId;
+                this.PaymentAmount = model.PaymentAmount;
+            }
+
+            return propertiesChanged;
+        }
+
+        public override string ToString()
+        {
+            return $"ContractPayment:{Id}=" + 
+                $"ContractId:{ContractId}," +
+                $"ContractMonthlyPaymentId:{ContractMonthlyPaymentId}," +
+                $"EnteredByUserId:{EnteredByUserId}," +
+                $"PaymentAmount:{PaymentAmount}"; 
+        }
     }
 }

@@ -13,6 +13,11 @@
         DateTime CreatedDate { get; set; }
 
         /// <summary>
+        /// The date the entity was last updated
+        /// </summary>
+        DateTime? ModifiedDate { get; set; }
+
+        /// <summary>
         /// A limited update feature
         /// </summary>
         /// <param name="model">The updated values</param>

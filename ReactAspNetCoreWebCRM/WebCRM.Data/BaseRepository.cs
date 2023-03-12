@@ -113,11 +113,10 @@ namespace WebCRM.Data
             {
                 if (_logger != null)
                 {
-                    var message = $"{nameof(DataModel)} Repository GetByIdAsync error: " + ex.Message;
-                    _logger.LogError(ex, message);
+                    _logger.LogError(ex, $"{nameof(DataModel)} Repository GetByIdAsync error: " + ex.Message);
                 }
 
-                return new ResponseModel<DataModel>(false, true, CRMConstants.DatabaseError, null);
+                return new ResponseModel<DataModel>(message: CRMConstants.DatabaseError);
             }
         }
 
@@ -153,6 +152,8 @@ namespace WebCRM.Data
                     return new ResponseModel<DataModel>(true, false, CRMConstants.NoChangesToSave, model);
                 }
 
+                modelToUpdate.ModifiedDate = DateTime.UtcNow;
+                _dataContext.Set<DataModel>().Update(modelToUpdate);
                 var changesSaved = await _dataContext.SaveChangesAsync(cancellationToken);
                 bool success = changesSaved > 0;
                 var message = success ? CRMConstants.SuccessfullySavedChanges : CRMConstants.FailedToSaveChanges;
@@ -162,8 +163,7 @@ namespace WebCRM.Data
             {
                 if (_logger != null)
                 {
-                    var message = $"{nameof(DataModel)} Repository UpdateAsync error: " + ex.Message;
-                    _logger.LogError(ex, message);
+                    _logger.LogError(ex, $"{nameof(DataModel)} Repository UpdateAsync error: " + ex.Message);
                 }
 
                 return new ResponseModel<DataModel>(false, false, CRMConstants.DatabaseError, model);
@@ -217,11 +217,10 @@ namespace WebCRM.Data
             {
                 if (_logger != null)
                 {
-                    var message = $"{nameof(DataModel)} Repository DeleteAsync error: " + ex.Message;
-                    _logger.LogError(ex, message);
+                    _logger.LogError(ex, $"{nameof(DataModel)} Repository DeleteAsync error: " + ex.Message);
                 }
 
-                return new ResponseModel<DataModel>(false, false, CRMConstants.DatabaseError, null);
+                return new ResponseModel<DataModel>(message: CRMConstants.DatabaseError);
             }
         }
     }

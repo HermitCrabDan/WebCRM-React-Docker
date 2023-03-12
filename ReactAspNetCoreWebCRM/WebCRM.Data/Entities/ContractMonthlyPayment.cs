@@ -65,5 +65,38 @@ namespace WebCRM.Data
         /// The payments associated with the monthly payment
         /// </summary>
         public virtual ICollection<ContractPayment> ContractPayments { get; set; }
+
+        public override bool SecureUpdate(ContractMonthlyPayment model)
+        {
+            var propertiesChanged = this.ContractId != model.ContractId
+                || this.DueDate != model.DueDate
+                || this.MonthlyPaymentAmountDue != model.MonthlyPaymentAmountDue
+                || this.PaymentCompletionDate != model.PaymentCompletionDate
+                || this.PaymentSkipedDate != model.PaymentSkipedDate
+                || this.PaymentSkippedByUserId != model.PaymentSkippedByUserId;
+
+            if (propertiesChanged) 
+            {
+                this.ContractId = model.ContractId;
+                this.DueDate = model.DueDate;
+                this.MonthlyPaymentAmountDue = model.MonthlyPaymentAmountDue;
+                this.PaymentCompletionDate = model.PaymentCompletionDate;
+                this.PaymentSkipedDate = model.PaymentSkipedDate;
+                this.PaymentSkippedByUserId = model.PaymentSkippedByUserId;
+            }
+
+            return propertiesChanged;
+        }
+
+        public override string ToString()
+        {
+            return $"ContractMonthlyPayment:{Id}=" +
+                $"ContractId:{ContractId}," +
+                $"DueDate:{DueDate}," +
+                $"MonthlyPaymentAmountDue:{MonthlyPaymentAmountDue}," +
+                $"PaymentCompletionDate:{PaymentCompletionDate}," +
+                $"PaymentSkipedDate:{PaymentSkipedDate}," +
+                $"PaymentSkippedByUserId:{PaymentSkippedByUserId}";
+        }
     }
 }

@@ -8,6 +8,9 @@ using WebCRM.Data;
 
 namespace WebCRM.Services.Models
 {
+    /// <summary>
+    /// The Contract entity dto
+    /// </summary>
     public class ContractDto : SoftDeletedDto<Contract>, IContract
     {
         public ContractDto()
